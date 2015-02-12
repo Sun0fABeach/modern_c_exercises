@@ -1,5 +1,5 @@
 *.swp
-<<<<<<< HEAD
-=======
-*.o
->>>>>>> 6bba493401b932f8f409b00cdfc6ea3c5ff4f070
+*chapter_?/exercises/*
+!*chapter_?/exercises/*.c
+*chapter_?/projects/*
+!*chapter_?/projects/*.c
