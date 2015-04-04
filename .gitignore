@@ -1,5 +1,5 @@
 *.swp
-*chapter_?/exercises/*
-!*chapter_?/exercises/*.c
-*chapter_?/projects/*
-!*chapter_?/projects/*.c
+*chapter_*/exercises/*
+!*chapter_*/exercises/*.c
+*chapter_*/projects/*
+!*chapter_*/projects/*.c
