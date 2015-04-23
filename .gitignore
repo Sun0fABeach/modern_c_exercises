@@ -3,3 +3,5 @@
 *chapter_*/projects/*
 !*chapter_*/exercises/*.c
 !*chapter_*/projects/*.c
+!*chapter_*/exercises/Makefile
+!*chapter_*/projects/Makefile
