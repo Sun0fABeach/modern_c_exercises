@@ -52,15 +52,15 @@ int main()
 {
     printf(
         "Rectangle area: %d\n", area(
-            (Shape){RECTANGLE, (Point){3, 3}, .form.rectangle = {3, 4}}
+            (Shape){RECTANGLE, {3, 3}, .form.rectangle = {3, 4}}
         )
     );
     printf(
         "Circle area: %d\n", area(
-            (Shape){CIRCLE, (Point){3, 3}, .form.circle = {5}}
+            (Shape){CIRCLE, {3, 3}, .form.circle = {5}}
         )
     );
-    Shape s = {CIRCLE, (Point){3, 3}, .form.circle = {5}};
+    Shape s = {CIRCLE, {3, 3}, .form.circle = {5}};
     printf("Circle: center %d/%d, radius: %d\n",
         s.center.x, s.center.y, s.form.circle.radius
     );

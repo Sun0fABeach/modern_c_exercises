@@ -37,10 +37,10 @@ bool contains(Rectangle r, Point p)
 
 int main()
 {
-    printf("Area: %d\n", area((Rectangle){(Point){1, 2}, (Point){3, 4}}));
-    Point p = center((Rectangle){(Point){1, 2}, (Point){5, 6}});
+    printf("Area: %d\n", area((Rectangle){{1, 2}, {3, 4}}));
+    Point p = center((Rectangle){{1, 2}, {5, 6}});
     printf("Center: %d/%d\n", p.x, p.y);
-    Rectangle r = move((Rectangle){(Point){1, 2}, (Point){5, 6}}, 3, 3);
+    Rectangle r = move((Rectangle){{1, 2}, {5, 6}}, 3, 3);
     printf("Moved: %d/%d %d/%d\n",
         r.upper_left.x, r.upper_left.y, r.lower_right.x, r.lower_right.y
     );
