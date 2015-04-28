@@ -16,7 +16,7 @@ int compare_dates(Date d1, Date d2)
 {
     int x = day_of_year(d1);
     int y = day_of_year(d2);
-    return x < y ? -1 : y > x ? 1 : 0;
+    return x < y ? -1 : x > y ? 1 : 0;
 }
 
 int main()
