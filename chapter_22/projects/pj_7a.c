@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     FILE *infile, *outfile;
 
     if(argc < 2) {
-        puts("usage: pj_7 filename");
+        puts("usage: pj_7a filename");
         exit(EXIT_FAILURE);
     }
     if((infile = fopen(argv[1], "rb")) == NULL) {
