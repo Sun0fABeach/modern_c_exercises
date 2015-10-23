@@ -12,6 +12,9 @@
 #ifndef LINE_H
 #define LINE_H
 
+#include <stdio.h>
+#include <stdbool.h>
+
 /**********************************************************
  * clear_line: Clears the current line.                   *
  **********************************************************/
@@ -34,13 +37,13 @@ int space_remaining(void);
  * write_line: Writes the current line with               *
  *             justification.                             *
  **********************************************************/
-void write_line(void);
+bool write_line(FILE *const outfile);
 
 /**********************************************************
  * flush_line: Writes the current line without            *
  *             justification. If the line is empty, does  *
  *             nothing.                                   *
  **********************************************************/
-void flush_line(void);
+bool flush_line(FILE *const outfile);
 
 #endif

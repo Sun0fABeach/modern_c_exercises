@@ -12,6 +12,9 @@
 #ifndef WORD_H
 #define WORD_H
 
+#include <stdio.h>
+#include <stdbool.h>
+
 /**********************************************************
  * read_word: Reads the next word from the input and      *
  *            stores it in word. Makes word empty if no   *
@@ -19,6 +22,6 @@
  *            Truncates the word if its length exceeds    *
  *            len.                                        *
  **********************************************************/
-void read_word(char *word, int len);
+bool read_word(char *word, int len, FILE *const infile);
 
 #endif

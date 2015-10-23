@@ -9,7 +9,6 @@
 
 /* line.c (Chapter 15, page 364) */
 
-#include <stdio.h>
 #include <string.h>
 #include "line.h"
 
@@ -21,49 +20,61 @@ int num_words = 0;
 
 void clear_line(void)
 {
-  line[0] = '\0';
-  line_len = 0;
-  num_words = 0;
+	line[0] = '\0';
+	line_len = 0;
+	num_words = 0;
 }
 
 void add_word(const char *word)
 {
-  if (num_words > 0) {
-    line[line_len] = ' ';
-    line[line_len+1] = '\0';
-    line_len++;
-  }
-  strcat(line, word);
-  line_len += strlen(word);
-  num_words++;
+	if (num_words > 0) {
+		line[line_len] = ' ';
+		line[line_len+1] = '\0';
+		line_len++;
+	}
+	strcat(line, word);
+	line_len += strlen(word);
+	num_words++;
 }
 
 int space_remaining(void)
 {
-  return MAX_LINE_LEN - line_len;
+	return MAX_LINE_LEN - line_len;
 }
 
-void write_line(void)
+bool write_line(FILE *const outfile)
 {
-  int extra_spaces, spaces_to_insert, i, j;
+	int extra_spaces, spaces_to_insert, i, j;
 
-  extra_spaces = MAX_LINE_LEN - line_len;
-  for (i = 0; i < line_len; i++) {
-    if (line[i] != ' ')
-      putchar(line[i]);
-    else {
-      spaces_to_insert = extra_spaces / (num_words - 1);
-      for (j = 1; j <= spaces_to_insert + 1; j++)
-        putchar(' ');
-      extra_spaces -= spaces_to_insert;
-      num_words--;
-    }
-  }
-  putchar('\n');
-}
+	extra_spaces = MAX_LINE_LEN - line_len;
+	for (i = 0; i < line_len; i++) {
+		if (line[i] != ' ') {
+				putc(line[i], outfile);
+				if(ferror(outfile))
+					return false;
+		} else {
+			spaces_to_insert = extra_spaces / (num_words - 1);
+			for (j = 1; j <= spaces_to_insert + 1; j++) {
+				putc(' ', outfile);
+				if(ferror(outfile))
+						return false;
+			}
+			extra_spaces -= spaces_to_insert;
+			num_words--;
+		}
+	}
+	putc('\n', outfile);
+	if(ferror(outfile))
+		return false;
+	return true;
+	}
 
-void flush_line(void)
+bool flush_line(FILE *const outfile)
 {
-  if (line_len > 0)
-    puts(line);
+	if(line_len > 0) {
+		fputs(line, outfile);
+		if(ferror(outfile))
+			return false;
+	}
+	return true;
 }

@@ -9,28 +9,35 @@
 
 /* word.c (Chapter 15, page 363) */
 
-#include <stdio.h>
 #include "word.h"
 
-int read_char(void)
+int read_char(FILE *const infile)
 {
-  int ch = getchar();
+	int ch = getc(infile);
 
-  if (ch == '\n' || ch == '\t')
-    return ' ';
-  return ch;
+	if (ch == '\n' || ch == '\t')
+		return ' ';
+	return ch;
 }
 
-void read_word(char *word, int len)
+bool read_word(char *word, int len, FILE *const infile)
 {
-  int ch, pos = 0;
+	int ch, pos = 0;
 
-  while ((ch = read_char()) == ' ')
-    ;
-  while (ch != ' ' && ch != EOF) {
-    if (pos < len)
-      word[pos++] = ch;
-    ch = read_char();
-  }
-  word[pos] = '\0';
+	while ((ch = read_char(infile)) == ' ')
+		;
+	if(ferror(infile))
+		return false;
+
+	while (ch != ' ' && ch != EOF) {
+		if (pos < len)
+		word[pos++] = ch;
+		ch = read_char(infile);
+	}
+	if(ferror(infile))
+		return false;
+
+	word[pos] = '\0';
+
+	return true;
 }
