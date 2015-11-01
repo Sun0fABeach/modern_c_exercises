@@ -193,7 +193,8 @@ void dump(void)
         return;
     }
 
-    if(fwrite(inventory, sizeof(struct part), num_parts, dumpfile) == 0)
+    fwrite(inventory, sizeof(struct part), num_parts, dumpfile);
+    if(ferror(dumpfile))
         fprintf(stderr, "Error while writing to file %s\n", fname);
 
     fclose(dumpfile);
@@ -217,7 +218,7 @@ void restore(void)
     }
 
     num_parts = fread(inventory, sizeof(struct part), MAX_PARTS, infile);
-    if(num_parts == 0)
+    if(ferror(infile))
         fprintf(stderr, "Error while reading file %s\n", fname);
 
     fclose(infile);
